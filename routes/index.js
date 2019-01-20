@@ -20,4 +20,13 @@ router.get('/versionCheck', function (req, res) {
   });
 });
 
+// ==================
+// 로그인
+// ==================
+router.post('/login', function (req, res) {
+  console.log(req.session);
+  req.session.username = "hi";
+  res.status(200).json({});
+});
+
 module.exports = router;
