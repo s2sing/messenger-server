@@ -10,10 +10,10 @@ router.get('/', function (req, res) {
 // ==================
 // 클라이언트 버전 체크
 // ==================
-router.get('/versionCheck', function (req, res) {
+router.get('/versionUpdate', function (req, res) {
   fs.readdir(path.join(__dirname, '../public/repository/client'), function (error, files) {
     const body = {};
-    body.version = '1.0.0';
+    body.version = '1.0.1';
     body.repository = '/repository/client/';
     body.files = files;
     res.status(200).json(body);
@@ -24,9 +24,11 @@ router.get('/versionCheck', function (req, res) {
 // 로그인
 // ==================
 router.post('/login', function (req, res) {
-  console.log(req.session);
-  req.session.username = "hi";
-  res.status(200).json({});
+  req.session.username = req.body.username;
+
+  const body = {};
+  body.result = true;
+  res.status(200).json(body);
 });
 
 module.exports = router;
